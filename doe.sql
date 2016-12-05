@@ -40,16 +40,17 @@ SUM(CASE WHEN motpRating = 'Highly Effective' THEN 1 ELSE 0 END) AS Highly_Effec
 COUNT(employeeId) AS Total
 FROM doe GROUP BY districtCode ORDER BY districtCode;
 
--- -- Write results of above to file:
--- COPY (
--- SELECT districtCode, 
--- SUM(CASE WHEN motpRating = 'Highly Ineffective' THEN 1 ELSE 0 END) AS HI_Count, 
--- SUM(CASE WHEN motpRating = 'Ineffective' THEN 1 ELSE 0 END) AS I_Count, 
--- SUM(CASE WHEN motpRating = 'Developing' THEN 1 ELSE 0 END) AS D_Count, 
--- SUM(CASE WHEN motpRating = 'Effective' THEN 1 ELSE 0 END) AS E_Count, 
--- SUM(CASE WHEN motpRating = 'Highly Effective' THEN 1 ELSE 0 END) AS HE_Count 
--- FROM doe GROUP BY districtCode ORDER BY districtCode
--- ) TO '/Users/daianachang/learning-d3/doe-stack.csv' DELIMITER ',' CSV HEADER;
+-- Write results of above to file:
+COPY (
+SELECT districtCode, 
+SUM(CASE WHEN motpRating = 'Highly Ineffective' THEN 1 ELSE 0 END) AS Highly_Ineffective, 
+SUM(CASE WHEN motpRating = 'Ineffective' THEN 1 ELSE 0 END) AS Ineffective, 
+SUM(CASE WHEN motpRating = 'Developing' THEN 1 ELSE 0 END) AS Developing, 
+SUM(CASE WHEN motpRating = 'Effective' THEN 1 ELSE 0 END) AS Effective, 
+SUM(CASE WHEN motpRating = 'Highly Effective' THEN 1 ELSE 0 END) AS Highly_Effective,
+COUNT(employeeId) AS Total
+FROM doe GROUP BY districtCode ORDER BY districtCode
+) TO '/Users/daianachang/doe-dataviz/doe-stack-count-motp.csv' DELIMITER ',' CSV HEADER;
 
 -- MOTP %
 SELECT districtCode, 
@@ -60,16 +61,16 @@ SELECT districtCode,
 100*SUM(CASE WHEN motpRating = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
 FROM doe GROUP BY districtCode ORDER BY districtCode;
 
--- Write results of above to file:
-COPY (
-SELECT districtCode, 
-100*SUM(CASE WHEN motpRating = 'Highly Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Ineffective, 
-100*SUM(CASE WHEN motpRating = 'Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Ineffective, 
-100*SUM(CASE WHEN motpRating = 'Developing' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Developing, 
-100*SUM(CASE WHEN motpRating = 'Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Effective, 
-100*SUM(CASE WHEN motpRating = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
-FROM doe GROUP BY districtCode ORDER BY districtCode
-) TO '/Users/daianachang/learning-d3/doe-stack-percent-motp.csv' DELIMITER ',' CSV HEADER;
+-- -- Write results of above to file:
+-- COPY (
+-- SELECT districtCode, 
+-- 100*SUM(CASE WHEN motpRating = 'Highly Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Ineffective, 
+-- 100*SUM(CASE WHEN motpRating = 'Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Ineffective, 
+-- 100*SUM(CASE WHEN motpRating = 'Developing' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Developing, 
+-- 100*SUM(CASE WHEN motpRating = 'Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Effective, 
+-- 100*SUM(CASE WHEN motpRating = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
+-- FROM doe GROUP BY districtCode ORDER BY districtCode
+-- ) TO '/Users/daianachang/doe-dataviz/doe-stack-percent-motp.csv' DELIMITER ',' CSV HEADER;
 
 -- MOSL State %
 SELECT districtCode, 
@@ -80,16 +81,16 @@ SELECT districtCode,
 100*SUM(CASE WHEN moslRatingState = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
 FROM doe GROUP BY districtCode ORDER BY districtCode;
 
--- Write results of above to file:
-COPY (
-SELECT districtCode, 
-100*SUM(CASE WHEN moslRatingState = 'Highly Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Ineffective, 
-100*SUM(CASE WHEN moslRatingState = 'Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Ineffective, 
-100*SUM(CASE WHEN moslRatingState = 'Developing' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Developing, 
-100*SUM(CASE WHEN moslRatingState = 'Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Effective, 
-100*SUM(CASE WHEN moslRatingState = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
-FROM doe GROUP BY districtCode ORDER BY districtCode
-) TO '/Users/daianachang/learning-d3/doe-stack-percent-mosl-state.csv' DELIMITER ',' CSV HEADER;
+-- -- Write results of above to file:
+-- COPY (
+-- SELECT districtCode, 
+-- 100*SUM(CASE WHEN moslRatingState = 'Highly Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Ineffective, 
+-- 100*SUM(CASE WHEN moslRatingState = 'Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Ineffective, 
+-- 100*SUM(CASE WHEN moslRatingState = 'Developing' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Developing, 
+-- 100*SUM(CASE WHEN moslRatingState = 'Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Effective, 
+-- 100*SUM(CASE WHEN moslRatingState = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
+-- FROM doe GROUP BY districtCode ORDER BY districtCode
+-- ) TO '/Users/daianachang/doe-dataviz/doe-stack-percent-mosl-state.csv' DELIMITER ',' CSV HEADER;
 
 
 -- MOSL Local %
@@ -101,16 +102,16 @@ SELECT districtCode,
 100*SUM(CASE WHEN moslRatingLocal = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
 FROM doe GROUP BY districtCode ORDER BY districtCode;
 
--- Write results of above to file:
-COPY (
-SELECT districtCode, 
-100*SUM(CASE WHEN moslRatingLocal = 'Highly Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Ineffective, 
-100*SUM(CASE WHEN moslRatingLocal = 'Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Ineffective, 
-100*SUM(CASE WHEN moslRatingLocal = 'Developing' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Developing, 
-100*SUM(CASE WHEN moslRatingLocal = 'Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Effective, 
-100*SUM(CASE WHEN moslRatingLocal = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
-FROM doe GROUP BY districtCode ORDER BY districtCode
-) TO '/Users/daianachang/learning-d3/doe-stack-percent-mosl-local.csv' DELIMITER ',' CSV HEADER;
+-- -- Write results of above to file:
+-- COPY (
+-- SELECT districtCode, 
+-- 100*SUM(CASE WHEN moslRatingLocal = 'Highly Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Ineffective, 
+-- 100*SUM(CASE WHEN moslRatingLocal = 'Ineffective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Ineffective, 
+-- 100*SUM(CASE WHEN moslRatingLocal = 'Developing' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Developing, 
+-- 100*SUM(CASE WHEN moslRatingLocal = 'Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Effective, 
+-- 100*SUM(CASE WHEN moslRatingLocal = 'Highly Effective' THEN 1 ELSE 0 END)/CAST(COUNT(employeeId) AS FLOAT) AS Highly_Effective
+-- FROM doe GROUP BY districtCode ORDER BY districtCode
+-- ) TO '/Users/daianachang/doe-dataviz/doe-stack-percent-mosl-local.csv' DELIMITER ',' CSV HEADER;
 
 
 
