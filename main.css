@@ -3,7 +3,50 @@ body {
     font-size: 14px;
 }
 
+button {
+    margin: 0.5em;
+    padding: 0.2em 0em;
+    font-size: 1.4em;
+    background: #FFF;
+    color: #777;
+    border: 0.3em solid transparent;
+    border-radius: 0.3em;
+    text-decoration: none;
+    cursor: pointer;
+}
 
+button:hover {
+    /*background: #2587AA;*/
+    border-bottom: 0.3em solid #FFE74C;
+    overflow: hidden;
+}
+
+button:focus {
+    /*background: #E56B2D;*/
+    border-bottom: 0.3em solid #FF9859;
+    outline: 0;
+}
+
+svg {
+	/* big right padding for legend */
+	padding: 0 10em 3em 3em;
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+.chart {
+    margin: 2em auto;
+    display: block;
+}
+
+.interface {
+    margin: 2em 2em 0 2em;
+    width: 90%;
+    display: block;
+}
 
 .axis path,
 .axis line {
@@ -14,4 +57,8 @@ body {
 
 .axis text {
     font-size: 1.5em;
+}
+
+.axis-label {
+	font-size: 1.2em;
 }
