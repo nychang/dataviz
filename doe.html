@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>DoE</title>
+    <link rel="shortcut icon" href="favicon.png" type='image/x-icon' />
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:900" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="d3-selection-multi.js"></script>
+    <script type="text/javascript" src="stack-column.js"></script>
+</head>
+
+<body>
+
+    <main>
+
+    <section>
+    
+    <h1>Part 1: Short Answers</h1>
+
+    <article>
+        <p class="question">Talk to us about something you’ve helped create. Where did the idea come from? Why does it excite you? What were the highs and lows in the development process? 500 words or less</p>
+        
+        <p class="answer"><a href="https://infoactive.co/data-design" title="Data + Design" target="_blank">Data + Design</a> is a free, Creative Commons-licensed book that introduces data visualization topics using plain language and relatable examples. I first heard about <em>Data + Design</em> through a different project on <a href="https://www.kickstarter.com/" title="Kickstarter" target="_blank">Kickstarter</a>.  The Kickstarter project (to crowdfund infographic software...successfully funded!) spawned the idea of creating a resource to help people get started with making sense of data.  So a call was put out for volunteers to make the magic happen, and ta da! <em>Data + Design</em> was born.<br><br>
+
+        I volunteered because I've always been fascinated by the intersection of math and art.  I am neither a mathematician nor an artist, but why let that stop me?  I thought the project was brimming with new knowledge and neat skills to learn, so I jumped in.  The chapters I contributed to the most are <a href="https://infoactive.co/data-design/ch17.html" target="_blank">Perception Deception</a> and <a href="https://infoactive.co/data-design/ch18.html" target="_blank">Common Visualization Mistakes</a>.<br><br>
+
+        Everyone who volunteered for this project believes that data visualization is an exciting and powerful way to communicate, so we worked hard to coordinate the efforts of dozens of people across almost every continent to create a friendly, inviting resource that encourages people to learn more about dataviz. But the fun's not done! I love participating in community-driven projects like this, so thanks to a fantastic team of rock stars who translated the book into French, I'm currently working on getting the <a href="http://bit.ly/datadesignfrench" target="_blank">French version</a> of the book online.</p>
+    </article>
+
+    <article>
+        <p class="question">Tell us about a time you had to understand a problem from a perspective that was different than your own. What did you learn? 500 words or less</p>
+        
+        <p class="answer"></p>
+    </article>
+
+    <article>
+        <p class="question">Please provide us a link to your portfolio, linkedin, github or personal website (e.g. something that shows off your portfolio of work and projects).</p>
+        
+        <p class="answer">
+            <a href="https://github.com/nychang" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a><br><br>
+            <a href="http://nychang.com" target="_blank"><i class="fa fa-link" aria-hidden="true"></i> Portfolio Site</a>
+        </p>
+    </article>
+
+    </section>
+
+    <section>
+    
+    <h1>Part 2: Task</h1>
+
+    <article>
+        <p class="question">Context: The attached file is a “Teacher Summary Report” that is sent to Principals at the end of the school year with information about how their teachers performed across a few evaluation variables. This is a relatively new report that the team has produced and is looking for ways to improve it. Your task is to:</p>
+
+        <p class="question">Create a “report” that represents this data for principals in a clear and engaging way. How you choose to create the report is up to you, including what tools or software you use.</p>
+
+        <p class="answer">Please see the 2 sets of column charts below.  The questions and answers continue after the charts.</p>
+
+        <div id="ratings-chart">
+        <h1 class="chart-title">All District Ratings</h1>
+        <div class="center interface">
+            <button id="motp-ratings-percent">MOTP</button>
+            <button id="mosl-state-ratings-percent">MOSL State</button>
+            <button id="mosl-local-ratings-percent">MOSL Local</button>
+        </div>
+        </div>
+
+        <div id="points-chart">
+        <h1 class="chart-title">District 6 Points</h1>
+        <div class="center interface"></div>
+        </div>
+
+        <p class="question">Explain your methodology and choices made. In less than 500 words describe the assumptions you made, why you made them, what design choices you made, and what influenced them.</p>
+
+        <p class="answer">The task was to create a report that principals can review at the end of the year. So my first question was, "What would principals want to know? What kind of insight would help them take constructive action?" To that end, I thought both a macro and a micro view would help.<br><br>
+
+        For the macro view, I thought principals would like to know how their schools were doing compared to other schools &mdash; preferably controlling for grade levels, region, etc.  The <a href="teacher-ratings.tsv">data set</a> only had data for one school (Zelda Heights School), but it did have data for different districts (I actually thought this was a bit confusing because I assumed the same school would have the same district code).  So I went ahead and made a chart to demonstrate the spirit of the comparison.  The first chart compares the percentage of different ratings across different districts.  I chose percentages (over counts) because they help normalize comparsions between districts of different sizes.  I assumed that with more data, the columns would look more like the one for District 6, which is the only district with multiple records.  Right now, the other districts in the data sample have only one record, so their columns are simply 100% blocks.<br><br>
+
+        For the micro view, I thought principals would like to know how the teachers in their own schools were doing.  To make the comparison more useful in the second chart, I minimized the number of variables by limiting the data to only teachers from the same school and district.  I assumed from reviewing the data that the Overall Point value was the sum of the MOTP and MOSL values, so I left the scale as points.  This way, stacking the points on top of each other is a visual representation of the Overall Point value and composition.<br><br>
+
+        I went with column charts because I learned from <a href="https://infoactive.co/data-design" title="Data + Design" target="_blank">Data + Design</a> (specifically, Cleveland &amp; McGill's research) that people are best at interpreting lengths (as opposed to areas and hues, etc).
+
+
+        </p>
+
+        <p class="question">Additionally, describe how you would evaluate the effectiveness of what you produced. Be as specific as possible including both what metrics you would want to measure and how you would define success.</p>
+
+        <p class="answer">I think the option that can scale the most in terms of people-powered labor is to make the reports available online and incorporate tools that are commonly used in the commercial space to analyze user activity.  For example, click heatmaps, time spent per page, and A/B testing.  But I also think it's important to talk to the people who are using the reports to find out what it is they're looking for and how they're using the reports.  What are the actions they take after going through the reports?  If they learned a lot but take no action, where are the points of friction and can the reports help them overcome those pain points?  Maybe most principals prefer paper reports, in which case my previous online suggestions are moot.  So I think these kinds of conversations are helpful towards evaluating success and structuring information in a way that empowers people with the most leverage.</p>
+
+        <p class="question">Last, critique your own product. We know nothing is perfect, and we work continuously to improve, so share two things that you think are really great about what you produced and 2 things that you think could likely be improved over time.</p>
+        
+        <p class="answer"><strong>Great Thing #1:</strong> That I learned enough D3 in a short period of time to make an interactive chart.  This was my first time using D3, and I appreciate the opportunity to start learning it and make something right away.<br><br>
+
+        <strong>Great Thing #2:</strong> I think the charts are fairly intuitive to use, partly because column charts are so familiar and partly because of which data chose to present.<br><br>
+
+        <strong>Improvement #1:</strong> I would like to add data labels, markers for mean and median values, and (for an online context) more interactivity and annotations. For example, in the <em>All District Ratings</em> chart, it would be nice if hovering over a column (within a stack) gives you the counts out of the total for that district.  Similarly, it would be useful to have the columns labeled with their actual point values in the <em>District 6 Points</em> chart.  It might also be useful to have additional filters, such as displaying only the teachers with an "Effective" Overall Rating.<br><br>
+
+        <strong>Improvement #2:</strong> A tie between adding different kinds of graphics and making the graphics mobile responsive.  I wanted to add a slopegraph to see how the point values compared between MOSL State and MOSL Local, but I ran out of time.
+        </p>
+    </article>
+
+    </section>
+
+
+
+
+    </main>
+    
+
+    <script type="text/javascript">
+        makeRatingsStack("#ratings-chart");
+        makePointsStack("#points-chart");
+    </script>
+</body>
+
+</html>
