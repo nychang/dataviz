@@ -147,6 +147,16 @@ svg {
     text-align: center;
 }
 
+/* weirdly, .chart-note doesn't work */
+.chart-caption {
+    font-family: "Poppins", "Helvetica", sans-serif;
+    font-size: 0.9em;
+    line-height: 1.2em;
+    text-align: justify;
+    width: 75%;
+    margin: -2em 6em 8em 6em;
+}
+
 .axis path,
 .axis line {
     fill: none;
