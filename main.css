@@ -127,8 +127,8 @@ svg {
 }
 
 .interface {
-    margin: 0 3em 0 2em;
-    width: 90%;
+    /*margin: 0 3em 0 2em;*/
+    /*width: 90%;*/
     display: block;
 }
 
@@ -139,7 +139,12 @@ svg {
 
 .chart-title {
 	text-align: center;
-	margin-right: 3em;
+	/*margin-right: 3em;*/
+}
+
+.chart-annotation {
+    font-family: "Poppins", "Helvetica", sans-serif;
+    text-align: center;
 }
 
 .axis path,

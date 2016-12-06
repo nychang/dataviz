@@ -45,9 +45,7 @@ function makeRatingsStack(appendTo) {
 
         // data.sort(function(a, b) { return b.total - a.total; });
 
-        x.domain(data.map(function(d) {
-            return d.districtcode;
-        }));
+        x.domain(data.map(function(d) { return d.districtcode; }));
 
         y.domain([0, 100]);
 
@@ -84,13 +82,13 @@ function makeRatingsStack(appendTo) {
 
         g.append("g")
             .attrs({
-                class: "axis axis--x",
+                class: "axis x-axis",
                 transform: "translate(0," + height + ")"
             })
             .call(d3.axisBottom(x));
 
         g.append("g")
-            .attr("class", "axis axis--y")
+            .attr("class", "axis y-axis")
             .call(d3.axisLeft(y).ticks(10, "s"));
 
         svg.append("text")
@@ -118,58 +116,43 @@ function makeRatingsStack(appendTo) {
 
 
         legend = g.selectAll(".legend")
-            .data(data.columns.slice(1).reverse())
-            .enter()
-            .append("g")
-            .attrs({
-                class: "legend",
-                transform: function(d, i) {
-                    return "translate(0," + i * 20 + ")";
-                }
-            })
-            .style("font", "12px sans-serif");
+                  .data(data.columns.slice(1).reverse())
+                  .enter()
+                  .append("g")
+                  .attrs({
+                    class: "legend",
+                    transform: function(d, i) {
+                        return "translate(0," + i * 20 + ")";
+                    }
+                  })
+                  .style("font", "12px sans-serif");
 
         legend.append("rect")
-            .attrs({
+              .attrs({
                 x: width,
                 width: 18,
                 height: 18,
                 fill: z
-            });
+              });
 
         legend.append("text")
-            .attrs({
+              .attrs({
                 x: width + 24,
                 y: 9,
                 dy: "0.35em",
                 "text-anchor": "start"
-            })
-            .text(function(d) {
-                return d;
-            });
-
-
-        
+              })
+              .text(function(d) { return d; });
 
     }); // closes motp csv
 
 
-
-
     d3.select("#motp-ratings-percent")
-        .on("click", function() {
+      .on("click", function() {
 
             d3.csv("doe-stack-percent-motp.csv", function(error, data) {
 
                 if (error) throw error;
-
-                // data.sort(function(a, b) { return b.total - a.total; });
-
-                // x.domain(data.map(function(d) { return d.districtcode; }));
-
-                // y.domain([0, 100]);
-
-                // z.domain(data.columns.slice(1));
 
                 g.selectAll(".field-column")
                     .data(stack.keys(data.columns.slice(1))(data))
@@ -220,14 +203,6 @@ function makeRatingsStack(appendTo) {
 
                 if (error) throw error;
 
-                // data.sort(function(a, b) { return b.total - a.total; });
-
-                // x.domain(data.map(function(d) { return d.districtcode; }));
-
-                // y.domain([0, 100]);
-
-                // z.domain(data.columns.slice(1));
-
                 g.selectAll(".field-column")
                     .data(stack.keys(data.columns.slice(1))(data))
                     // .enter()
@@ -275,14 +250,6 @@ function makeRatingsStack(appendTo) {
 
                 if (error) throw error;
 
-                // data.sort(function(a, b) { return b.total - a.total; });
-
-                // x.domain(data.map(function(d) { return d.districtcode; }));
-
-                // y.domain([0, 100]);
-
-                // z.domain(data.columns.slice(1));
-
                 g.selectAll(".field-column")
                     .data(stack.keys(data.columns.slice(1))(data))
                     // .enter()
@@ -320,251 +287,8 @@ function makeRatingsStack(appendTo) {
             }); // closes mosl local csv
 
         }) // closes mosl local on
-
-
-
-
-    
-
-
-
-
-    d3.select("#motp-ratings-count")
-        .on("click", function() {
-
-            d3.csv("doe-stack-count-motp.csv", function(error, data) {
-
-                if (error) throw error;
-
-        // data.sort(function(a, b) { return b.total - a.total; });
-
-        x.domain(data.map(function(d) {
-            return d.districtcode;
-        }));
-
-        y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
-
-        z.domain(data.columns.slice(1, data.columns.length - 1));
-
-        console.log("z", data.columns.slice(1, data.columns.length - 1))
-
-        g.selectAll(".field-column")
-            .data(stack.keys(data.columns.slice(1, data.columns.length - 1))(data))
-            // .enter()
-            // .append("g")
-            .transition()
-                    .duration(1000)
-                    .ease(easeType)
-            .attrs({
-                class: "field-column",
-                fill: function(d) {
-                    return z(d.key);
-                }
-            })
-            .selectAll("rect")
-            .data(function(d) {
-                return d;
-            })
-            // .enter()
-            // .append("rect")
-            .transition()
-                    .duration(1000)
-                    .ease(easeType)
-            .attrs({
-                x: function(d) {
-                    return x(d.data.districtcode);
-                },
-                y: function(d) {
-                    return y(d[1]);
-                },
-                height: function(d) {
-                    return y(d[0]) - y(d[1]);
-                },
-                width: x.bandwidth()
-            });
-
-        g.append("g")
-        .transition()
-                    .duration(1000)
-                    .ease(easeType)
-            .attrs({
-                class: "axis axis--x",
-                transform: "translate(0," + height + ")"
-            })
-            .call(d3.axisBottom(x));
-
-        g.append("g")
-        .transition()
-                    .duration(1000)
-                    .ease(easeType)
-            .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y).ticks(10, "s"));
-
-        svg.append("text")
-        .transition()
-                    .duration(1000)
-                    .ease(easeType)
-           .attrs({
-                transform: "translate(" + (width/2) + " ," + (height + margin.top + 20) + ")",
-                dx: "2em",
-                dy: "2.2em",
-                "text-anchor": "middle",
-                class: "axis-label"
-           })
-           .text("District");
-
-        svg.append("text")
-        .transition()
-                    .duration(1000)
-                    .ease(easeType)
-           .attrs({
-                transform: "rotate(-90)",
-                x: 0 - (height / 2),
-                y: 0 - margin.left,
-                dx: "-3em",  // changes vertical because of rotation
-                dy: "1.8em",  // changes horizontal
-                "text-anchor": "middle",
-                class: "axis-label"
-           })
-           .text("Count")
-
-                // not changing axes or legend
-
-            }); // closes motp csv
-
-        }) // closes motp on
-
-
-
-
-
-    d3.select("#mosl-state-ratings-count")
-        .on("click", function() {
-
-            d3.csv("doe-stack-count-mosl-state.csv", function(error, data) {
-
-                if (error) throw error;
-
-                // data.sort(function(a, b) { return b.total - a.total; });
-
-                // x.domain(data.map(function(d) { return d.districtcode; }));
-
-                // y.domain([0, 100]);
-
-                // z.domain(data.columns.slice(1));
-
-                g.selectAll(".field-column")
-                    .data(stack.keys(data.columns.slice(1))(data))
-                    // .enter()
-                    // .append("g")
-                    .attrs({
-                        class: "field-column",
-                        fill: function(d) {
-                            return z(d.key);
-                        }
-                    })
-                    .selectAll("rect")
-                    .data(function(d) {
-                        return d;
-                    })
-                    // .enter()
-                    // .append("rect")
-                    .transition()
-                    .duration(1000)
-                    .ease(easeType)
-                    .attrs({
-                        x: function(d) {
-                            return x(d.data.districtcode);
-                        },
-                        y: function(d) {
-                            return y(d[1]);
-                        },
-                        height: function(d) {
-                            return y(d[0]) - y(d[1]);
-                        },
-                        width: x.bandwidth()
-                    });
-
-                // not changing axes or legend
-
-            }); // closes mosl state csv
-
-        }) // closes mosl state on
-
-
-
-    d3.select("#mosl-local-ratings-count")
-        .on("click", function() {
-
-            d3.csv("doe-stack-count-mosl-local.csv", function(error, data) {
-
-                if (error) throw error;
-
-                // data.sort(function(a, b) { return b.total - a.total; });
-
-                // x.domain(data.map(function(d) { return d.districtcode; }));
-
-                // y.domain([0, 100]);
-
-                // z.domain(data.columns.slice(1));
-
-                g.selectAll(".field-column")
-                    .data(stack.keys(data.columns.slice(1))(data))
-                    // .enter()
-                    // .append("g")
-                    .attrs({
-                        class: "field-column",
-                        fill: function(d) {
-                            return z(d.key);
-                        }
-                    })
-                    .selectAll("rect")
-                    .data(function(d) {
-                        return d;
-                    })
-                    // .enter()
-                    // .append("rect")
-                    .transition()
-                    .duration(1000)
-                    .ease(easeType)
-                    .attrs({
-                        x: function(d) {
-                            return x(d.data.districtcode);
-                        },
-                        y: function(d) {
-                            return y(d[1]);
-                        },
-                        height: function(d) {
-                            return y(d[0]) - y(d[1]);
-                        },
-                        width: x.bandwidth()
-                    });
-
-                // not changing axes or legend
-
-            }); // closes mosl local csv
-
-        }) // closes mosl local on
-
-
 
 } // closes makeRatingsStack
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -602,7 +326,7 @@ function makePointsStack(appendTo) {
 
     var stack = d3.stack();
 
-    var legend;
+    let categories = ["Highly Ineffective", "Ineffective", "Developing", "Effective", "Highly Effective"];
 
     d3.csv("district6.csv", function(error, data) {
 
@@ -616,8 +340,8 @@ function makePointsStack(appendTo) {
 
         y.domain([0, 100]);
 
-        z.domain(data.columns.slice(16, data.columns.length));
-        console.log(data.columns.slice(16, data.columns.length))
+        // z.domain(data.columns.slice(16, data.columns.length));
+        z.domain(categories);
 
         g.selectAll(".field-column")
             .data(stack.keys(data.columns.slice(1))(data))
@@ -641,17 +365,15 @@ function makePointsStack(appendTo) {
                 width: x.bandwidth()
             });
 
-
-
         g.append("g")
             .attrs({
-                class: "axis axis--x",
+                class: "axis x-axis",
                 transform: "translate(0," + height + ")"
             })
             .call(d3.axisBottom(x));
 
         g.append("g")
-            .attr("class", "axis axis--y")
+            .attr("class", "axis y-axis")
             .call(d3.axisLeft(y).ticks(10, "s"));
 
         svg.append("text")
@@ -678,8 +400,8 @@ function makePointsStack(appendTo) {
       
 
 
-        legend = g.selectAll(".legend")
-            .data(data.columns.slice(16, data.columns.length).reverse())
+        let legend = g.selectAll(".legend")
+            .data(categories.reverse())
             .enter()
             .append("g")
             .attrs({
@@ -708,7 +430,7 @@ function makePointsStack(appendTo) {
             })
             .text(function(d) { return d; });
 
-        var legend2 = g.selectAll(".legend2")
+        let legend2 = g.selectAll(".legend2")
             .data(["MOTP", "MOSL State", "MOSL Local"].reverse())
             .enter()
             .append("g")
@@ -739,8 +461,6 @@ function makePointsStack(appendTo) {
                 "text-anchor": "start"
             })
             .text(function(d) { return d; });
-
-        
 
     }); // closes motp csv
 
