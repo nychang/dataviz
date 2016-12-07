@@ -20,11 +20,11 @@
 
 <body>
 
-    <main id="main">
+    <main>
 
     <section>
     
-    <h1>Part 1: Short Answers</h1>
+    <h1 id="part1">Part 1: Short Answers</h1>
 
     <article>
         <p class="question">Talk to us about something you’ve helped create. Where did the idea come from? Why does it excite you? What were the highs and lows in the development process? 500 words or less</p>
@@ -126,8 +126,10 @@
         
         window.onload = function() {
             document.getElementById("motp-ratings-percent").focus();
-            document.getElementById("main").focus();
+            window.location.hash = "#part1";
         };
+
+
     </script>
 </body>
 
