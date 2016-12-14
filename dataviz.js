@@ -39,7 +39,7 @@ function makeRatingsStack(appendTo) {
 
     var legend;
 
-    d3.csv("stack-column-percent-tp.csv", function(error, data) {
+    d3.csv("stacked-column-percent-tp.csv", function(error, data) {
 
         if (error) throw error;
 
