@@ -1,1 +1,96 @@
-<h1>HOLLA!</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>DoE</title>
+    <link rel="shortcut icon" href="favicon.png" type='image/x-icon' />
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:900" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="d3-selection-multi.js"></script>
+    <script type="text/javascript" src="stack-column.js"></script>
+</head>
+
+<body>
+
+    <main>
+
+    <section>
+    
+    <h1>Column Charts</h1>
+
+    <article>
+        <p class="question">This chart and the next is based on a dummy data set of teacher assessments.</p>
+        
+        <h1 class="chart-title">All District Ratings</h1>
+        <div class="center interface">
+            <button id="motp-ratings-percent">Teaching Performance (TP)</button>
+            <button id="mosl-state-ratings-percent">Student Performance State (SPS)</button>
+            <button id="mosl-local-ratings-percent">Student Performance Local (SPL)</button>
+        </div>
+        <div id="ratings-chart">
+        </div>
+        <p class="chart-caption">Each column shows the percent composition of rating categories (highly ineffective through highly effective) on one assessment (TP, SP State, SP Local). For example, District 6 had the following breakdown on the TP: 40% Developing, 47% Effective, and 13% Highly Effective.</p>
+    </article>
+
+    <article>
+        <h1 class="chart-title">District 6 Points</h1>
+        <p class="chart-annotation">District 6 Average Overall Points: <strong>81.7</strong></p>
+        <p class="chart-annotation">Percent of District 6 Teachers with Overall Rating of <em>Effective</em> or higher: <strong>100%</strong></p>
+        <div id="points-chart">
+        </div>
+        <p class="chart-caption">Each stack in a column represents the results of an assessment: the height corresponds to the point value, while the color represents the rating. The bottom, middle, and top stacks represent the points from the TP, SP State, and SP Local assessments respectively. The total height of a column represents the Overall Points value for an individual teacher. For example, Durian received 49 points and a rating of <em>Developing</em> on the TP (bottom stack) and 15 points and a rating of <em>Effective</em> on both the SP State and the SP Local (middle and top stacks) for a total of 79 Overall Points.</p>
+      
+      <p><strong>Things to Add After I Learn How to Make Them:</strong></p>
+      <ul>
+        <li>data labels (ex: columns labeled with their actual point values)</li>
+        <li>markers for mean and median values</li>
+        <li>(for an online context) more interactivity and annotations (ex: hovering over a column within a stack gives you the counts out of the total for that district)</li>
+        <li>additional filters (ex: displaying only the teachers with an "Effective" Overall Rating)</li>
+        <li>mobile responsive</li>
+        <li>slopegraph (to see how the point values compared between SP State and SP Local)</li>
+      </ul>
+
+    </article>
+
+    </section>
+
+    <section>
+    
+    <h1>Scatterplots</h1>
+
+    <article>
+    </article>
+    
+    </section>
+    
+    <section>
+    <h1>Bubble Maps</h1>
+
+    <article>
+    </article>
+    
+    </section>
+      
+
+    </main>
+    
+
+    <script type="text/javascript">
+        makeRatingsStack("#ratings-chart");
+        makePointsStack("#points-chart");
+        
+        window.onload = function() {
+            document.getElementById("motp-ratings-percent").focus();
+        };
+    </script>
+</body>
+
+</html>
