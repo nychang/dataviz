@@ -328,7 +328,7 @@ function makePointsStack(appendTo) {
 
     let categories = ["Highly Ineffective", "Ineffective", "Developing", "Effective", "Highly Effective"];
 
-    d3.csv("district6.csv", function(error, data) {
+    d3.csv("district12.csv", function(error, data) {
 
         if (error) throw error;
 
