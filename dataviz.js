@@ -150,7 +150,7 @@ function makeRatingsStack(appendTo) {
     d3.select("#motp-ratings-percent")
       .on("click", function() {
 
-            d3.csv("doe-stack-percent-motp.csv", function(error, data) {
+            d3.csv("stacked-column-percent-tp.csv", function(error, data) {
 
                 if (error) throw error;
 
