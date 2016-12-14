@@ -431,7 +431,7 @@ function makePointsStack(appendTo) {
             .text(function(d) { return d; });
 
         let legend2 = g.selectAll(".legend2")
-            .data(["MOTP", "MOSL State", "MOSL Local"].reverse())
+            .data(["TP", "SP State", "SP Local"].reverse())
             .enter()
             .append("g")
             .attrs({
