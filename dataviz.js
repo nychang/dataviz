@@ -199,7 +199,7 @@ function makeRatingsStack(appendTo) {
     d3.select("#mosl-state-ratings-percent")
         .on("click", function() {
 
-            d3.csv("doe-stack-percent-mosl-state.csv", function(error, data) {
+            d3.csv("stacked-column-percent-sp-state.csv", function(error, data) {
 
                 if (error) throw error;
 
@@ -246,7 +246,7 @@ function makeRatingsStack(appendTo) {
     d3.select("#mosl-local-ratings-percent")
         .on("click", function() {
 
-            d3.csv("doe-stack-percent-mosl-local.csv", function(error, data) {
+            d3.csv("stacked-column-percent-sp-local.csv", function(error, data) {
 
                 if (error) throw error;
 
